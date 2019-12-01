@@ -19,4 +19,9 @@ open class BasicConsole : BasicView {
         scanner.close()
     }
 
+    fun holdOutput() {
+        println("\nPress enter to continue...")
+        scanner.nextLine()
+    }
+
 }

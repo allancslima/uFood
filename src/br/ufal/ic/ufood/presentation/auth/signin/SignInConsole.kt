@@ -21,7 +21,6 @@ class SignInConsole(private val result: (signed: Boolean) -> Unit) : BasicConsol
 
     override fun stop() {
         super.stop()
-        scanner.close()
         presenter.detachView()
     }
 

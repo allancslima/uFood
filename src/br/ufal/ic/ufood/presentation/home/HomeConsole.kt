@@ -1,5 +1,6 @@
 package br.ufal.ic.ufood.presentation.home
 
+import br.ufal.ic.ufood.presentation.profile.ProfileConsole
 import br.ufal.ic.ufood.presentation.shared.mvp.BasicConsole
 
 class HomeConsole : BasicConsole() {
@@ -7,11 +8,6 @@ class HomeConsole : BasicConsole() {
     override fun start() {
         super.start()
         showMenu()
-    }
-
-    override fun stop() {
-        super.stop()
-        scanner.close()
     }
 
     private fun showMenu() {
@@ -23,15 +19,14 @@ class HomeConsole : BasicConsole() {
         print("\nOption: ")
 
         when (scanner.nextLine().toInt()) {
+            3 -> ProfileConsole().start()
             0 -> {
                 holdOutput()
                 stop()
             }
-            else -> {
-                println("Invalid option.")
-                showMenu()
-            }
+            else -> println("Invalid option.")
         }
+        showMenu()
     }
 
 }

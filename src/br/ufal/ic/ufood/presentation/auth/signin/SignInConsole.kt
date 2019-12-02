@@ -9,7 +9,7 @@ import br.ufal.ic.ufood.presentation.auth.MSG_WELCOME_USER
 import br.ufal.ic.ufood.presentation.auth.signup.SignUpConsole
 import br.ufal.ic.ufood.presentation.shared.mvp.BasicConsole
 
-class SignInConsole : BasicConsole(), SignInView {
+class SignInConsole(private val result: (signed: Boolean) -> Unit) : BasicConsole(), SignInView {
 
     private val presenter: SignInPresenter by lazy { SignInPresenter(UserRepositoryImpl()) }
 
@@ -25,7 +25,14 @@ class SignInConsole : BasicConsole(), SignInView {
     }
 
     override fun navigateToSignUp() {
-        SignUpConsole().start()
+        SignUpConsole { signed ->
+            if (signed) {
+                stop()
+                result(true)
+            } else {
+                showMenu()
+            }
+        }.start()
     }
 
     override fun requestCredentials(): Credentials {

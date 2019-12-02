@@ -3,6 +3,7 @@ package br.ufal.ic.ufood.presentation.auth.signup
 import br.ufal.ic.ufood.data.user.UserRepository
 import br.ufal.ic.ufood.domain.User
 import br.ufal.ic.ufood.presentation.auth.MSG_INVALID_EMAIL
+import br.ufal.ic.ufood.presentation.auth.MSG_INVALID_NAME
 import br.ufal.ic.ufood.presentation.auth.MSG_INVALID_PASSWORD
 import br.ufal.ic.ufood.presentation.auth.MSG_INVALID_PHONE_NUMBER
 import br.ufal.ic.ufood.presentation.shared.mvp.Presenter
@@ -28,7 +29,7 @@ class SignUpPresenter(
         val fieldError: String? = when {
             !UserFieldValidator.validateEmail(user.credentials.email) -> MSG_INVALID_EMAIL
             !UserFieldValidator.validatePassword(user.credentials.password) -> MSG_INVALID_PASSWORD
-            !UserFieldValidator.validateName(user.name) -> MSG_INVALID_EMAIL
+            !UserFieldValidator.validateName(user.name) -> MSG_INVALID_NAME
             !UserFieldValidator.validatePhoneNumber(user.phoneNumber) -> MSG_INVALID_PHONE_NUMBER
             else -> null
         }

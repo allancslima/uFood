@@ -4,20 +4,20 @@ import java.util.*
 
 open class BasicConsole : BasicView {
 
-    protected lateinit var scanner: Scanner
-        private set
+    companion object {
+
+        @JvmField
+        val scanner: Scanner = Scanner(System.`in`)
+
+    }
 
     override fun showMessage(message: String) {
         print(message)
     }
 
-    open fun start() {
-        scanner = Scanner(System.`in`)
-    }
+    open fun start() { }
 
-    open fun stop() {
-        scanner.close()
-    }
+    open fun stop() { }
 
     fun holdOutput() {
         println("\nPress enter to continue...")

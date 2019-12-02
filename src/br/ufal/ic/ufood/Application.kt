@@ -1,6 +1,7 @@
 package br.ufal.ic.ufood
 
 import br.ufal.ic.ufood.presentation.auth.signin.SignInConsole
+import br.ufal.ic.ufood.presentation.home.HomeConsole
 
 class Application {
 
@@ -8,8 +9,10 @@ class Application {
 
         @JvmStatic
         fun main(args: Array<String>) {
-            SignInConsole {
-                println("Go to home")
+            SignInConsole { signed ->
+                if (signed) {
+                    HomeConsole().start()
+                }
             }.start()
         }
 

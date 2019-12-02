@@ -21,6 +21,7 @@ class SignInConsole(private val result: (signed: Boolean) -> Unit) : BasicConsol
 
     override fun stop() {
         super.stop()
+        scanner.close()
         presenter.detachView()
     }
 
@@ -69,7 +70,11 @@ class SignInConsole(private val result: (signed: Boolean) -> Unit) : BasicConsol
                 holdOutput()
                 stop()
             }
-            else -> println("Invalid option.")
+            else -> {
+                println("Invalid option.")
+                holdOutput()
+                showMenu()
+            }
         }
     }
 

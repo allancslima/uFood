@@ -4,6 +4,7 @@ import br.ufal.ic.ufood.data.user.UserRepository
 import br.ufal.ic.ufood.domain.Credentials
 import br.ufal.ic.ufood.presentation.auth.MSG_INVALID_EMAIL
 import br.ufal.ic.ufood.presentation.auth.MSG_INVALID_PASSWORD
+import br.ufal.ic.ufood.presentation.auth.UserSession
 import br.ufal.ic.ufood.presentation.shared.mvp.Presenter
 import br.ufal.ic.ufood.shared.validation.UserFieldValidator
 
@@ -16,6 +17,7 @@ class SignInPresenter(
         try {
             validateCredentials(credentials)
             val user = userRepository.signIn(credentials)
+            UserSession.currentUser = user
             view.onSignInSuccess(user)
         } catch (e: Exception) {
             view.onSignInError(e.localizedMessage)

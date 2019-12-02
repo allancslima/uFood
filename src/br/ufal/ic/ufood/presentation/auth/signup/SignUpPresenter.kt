@@ -2,10 +2,7 @@ package br.ufal.ic.ufood.presentation.auth.signup
 
 import br.ufal.ic.ufood.data.user.UserRepository
 import br.ufal.ic.ufood.domain.User
-import br.ufal.ic.ufood.presentation.auth.MSG_INVALID_EMAIL
-import br.ufal.ic.ufood.presentation.auth.MSG_INVALID_NAME
-import br.ufal.ic.ufood.presentation.auth.MSG_INVALID_PASSWORD
-import br.ufal.ic.ufood.presentation.auth.MSG_INVALID_PHONE_NUMBER
+import br.ufal.ic.ufood.presentation.auth.*
 import br.ufal.ic.ufood.presentation.shared.mvp.Presenter
 import br.ufal.ic.ufood.shared.validation.UserFieldValidator
 
@@ -18,6 +15,7 @@ class SignUpPresenter(
         try {
             validateUser(user)
             userRepository.signUp(user)
+            UserSession.currentUser = user
             view.onSignUpSuccess(user)
         } catch (e: Exception) {
             view.onSignUpError(e.localizedMessage)

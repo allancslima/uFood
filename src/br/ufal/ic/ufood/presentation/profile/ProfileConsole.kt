@@ -1,6 +1,7 @@
 package br.ufal.ic.ufood.presentation.profile
 
 import br.ufal.ic.ufood.presentation.profile.address.AddressConsole
+import br.ufal.ic.ufood.presentation.profile.coupon.CouponConsole
 import br.ufal.ic.ufood.presentation.shared.mvp.BasicConsole
 
 class ProfileConsole : BasicConsole() {
@@ -20,6 +21,7 @@ class ProfileConsole : BasicConsole() {
 
         when (scanner.nextLine().toInt()) {
             1 -> AddressConsole().start()
+            3 -> CouponConsole().start()
             0 -> holdOutput()
             else -> {
                 println("Invalid option.")

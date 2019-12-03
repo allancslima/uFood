@@ -3,13 +3,27 @@ package br.ufal.ic.ufood.data.user
 import br.ufal.ic.ufood.domain.Address
 import br.ufal.ic.ufood.domain.Credentials
 import br.ufal.ic.ufood.domain.User
+import br.ufal.ic.ufood.domain.coupon.BreakfastCoupon
+import br.ufal.ic.ufood.domain.coupon.Coupon
+import br.ufal.ic.ufood.domain.coupon.DinnerCoupon
+import br.ufal.ic.ufood.domain.coupon.LunchCoupon
 
 class UserRepositoryImpl : UserRepository {
 
     companion object {
 
+        private val validCouponCodes: Map<String, Coupon> by lazy {
+            hashMapOf(
+                "BREAKFAST_5" to BreakfastCoupon(),
+                "LUNCH_10" to LunchCoupon(),
+                "DINNER_8" to DinnerCoupon(),
+                "XyZ_coupon_10" to LunchCoupon()
+            )
+        }
+
         private val users: MutableMap<String, User> by lazy { HashMap<String, User>() }
         private val addresses: MutableMap<String, MutableList<Address>> by lazy { HashMap<String, MutableList<Address>>() }
+        private val coupons: MutableMap<String, MutableSet<Coupon>> by lazy { HashMap<String, MutableSet<Coupon>>() }
 
     }
 
@@ -49,6 +63,22 @@ class UserRepositoryImpl : UserRepository {
             addresses.removeAt(addressId)
         } else {
             throw IllegalArgumentException("Invalid address ID.")
+        }
+    }
+
+    override fun getCoupons(user: User): List<Coupon> {
+        return coupons[user.credentials.email]?.toList() ?: emptyList()
+    }
+
+    @Throws(IllegalArgumentException::class)
+    override fun applyCouponCode(user: User, couponCode: String) {
+        val coupon = validCouponCodes[couponCode] ?: throw IllegalArgumentException("Invalid coupon.")
+
+        if (coupons[user.credentials.email] == null) {
+            coupons[user.credentials.email] = hashSetOf()
+        }
+        if (coupons[user.credentials.email]?.add(coupon) == false) {
+            throw IllegalArgumentException("Coupon already added.")
         }
     }
 

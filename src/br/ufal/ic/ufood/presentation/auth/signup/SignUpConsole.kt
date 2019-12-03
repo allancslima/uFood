@@ -4,6 +4,8 @@ import br.ufal.ic.ufood.data.user.UserRepositoryImpl
 import br.ufal.ic.ufood.domain.Credentials
 import br.ufal.ic.ufood.domain.User
 import br.ufal.ic.ufood.presentation.auth.*
+import br.ufal.ic.ufood.presentation.shared.LABEL_TYPE_OPTION
+import br.ufal.ic.ufood.presentation.shared.MSG_INVALID_OPTION
 import br.ufal.ic.ufood.presentation.shared.mvp.BasicConsole
 
 class SignUpConsole(private val result: (signed: Boolean) -> Unit) : BasicConsole(), SignUpView {
@@ -51,7 +53,7 @@ class SignUpConsole(private val result: (signed: Boolean) -> Unit) : BasicConsol
         println("SIGN UP\n")
         println("1 - Enter user")
         println("0 - Back")
-        print("\nOption: ")
+        print(LABEL_TYPE_OPTION)
 
         when (scanner.nextLine().toInt()) {
             1 -> presenter.onEnterUser()
@@ -60,7 +62,7 @@ class SignUpConsole(private val result: (signed: Boolean) -> Unit) : BasicConsol
                 stop()
                 result(false)
             }
-            else -> println("Invalid option.")
+            else -> println(MSG_INVALID_OPTION)
         }
     }
 

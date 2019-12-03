@@ -52,7 +52,7 @@ class CouponConsole : BasicConsole(), CouponView {
     }
 
     override fun onError(message: String) {
-        println("\n$message")
+        println("\nAn error occurred: $message")
         holdOutput()
         showMenu()
     }

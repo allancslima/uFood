@@ -3,6 +3,7 @@ package br.ufal.ic.ufood.presentation.profile.address
 import br.ufal.ic.ufood.data.user.UserRepositoryImpl
 import br.ufal.ic.ufood.domain.Address
 import br.ufal.ic.ufood.domain.Location
+import br.ufal.ic.ufood.presentation.shared.LABEL_TYPE_OPTION
 import br.ufal.ic.ufood.presentation.shared.mvp.BasicConsole
 
 class AddressConsole : BasicConsole(), AddressView {
@@ -22,16 +23,18 @@ class AddressConsole : BasicConsole(), AddressView {
 
     override fun showAddresses(addresses: List<Address>) {
         addresses.forEachIndexed { index, address ->
-            println(String.format(
-                LABEL_ADDRESS_DETAILS,
-                index,
-                address.street,
-                address.number,
-                address.complement,
-                address.location.lat,address.location.lat
-            ))
-            println()
+            println(
+                "${String.format(
+                    LABEL_ADDRESS_DETAILS,
+                    index,
+                    address.street,
+                    address.number,
+                    address.complement,
+                    address.location.lat, address.location.lat
+                )}\n"
+            )
         }
+        holdOutput()
         showMenu()
     }
 
@@ -61,13 +64,13 @@ class AddressConsole : BasicConsole(), AddressView {
     }
 
     override fun onAddressAdded() {
-        println("\nAddress added.")
+        println("\n$MSG_ADDRESS_ADDED")
         holdOutput()
         showMenu()
     }
 
     override fun onAddressDeleted() {
-        println("\nAddress deleted.")
+        println("\n$MSG_ADDRESS_DELETED")
         holdOutput()
         showMenu()
     }
@@ -84,13 +87,16 @@ class AddressConsole : BasicConsole(), AddressView {
         println("2 - Add address")
         println("3 - Delete address")
         println("0 - Back")
-        print("\nOption: ")
+        print(LABEL_TYPE_OPTION)
 
         when (scanner.nextLine().toInt()) {
             1 -> presenter.onLoadMyAddresses()
             2 -> presenter.onAddAddress()
             3 -> presenter.onDeleteAddress()
-            0 -> holdOutput()
+            0 -> {
+                holdOutput()
+                stop()
+            }
             else -> {
                 println("Invalid option.")
                 holdOutput()

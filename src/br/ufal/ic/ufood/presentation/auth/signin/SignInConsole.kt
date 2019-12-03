@@ -7,6 +7,8 @@ import br.ufal.ic.ufood.presentation.auth.LABEL_TYPE_EMAIL
 import br.ufal.ic.ufood.presentation.auth.LABEL_TYPE_PASSWORD
 import br.ufal.ic.ufood.presentation.auth.MSG_WELCOME_USER
 import br.ufal.ic.ufood.presentation.auth.signup.SignUpConsole
+import br.ufal.ic.ufood.presentation.shared.LABEL_TYPE_OPTION
+import br.ufal.ic.ufood.presentation.shared.MSG_INVALID_OPTION
 import br.ufal.ic.ufood.presentation.shared.mvp.BasicConsole
 
 class SignInConsole(private val result: (signed: Boolean) -> Unit) : BasicConsole(), SignInView {
@@ -60,7 +62,7 @@ class SignInConsole(private val result: (signed: Boolean) -> Unit) : BasicConsol
         println("1 - Enter credentials")
         println("2 - Go to sign up")
         println("0 - Exit")
-        print("\nOption: ")
+        print(LABEL_TYPE_OPTION)
 
         when (scanner.nextLine().toInt()) {
             1 -> presenter.onEnterCredentials()
@@ -70,7 +72,7 @@ class SignInConsole(private val result: (signed: Boolean) -> Unit) : BasicConsol
                 stop()
             }
             else -> {
-                println("Invalid option.")
+                println(MSG_INVALID_OPTION)
                 holdOutput()
                 showMenu()
             }

@@ -4,7 +4,8 @@ data class Restaurant(
     var name: String,
     var description: String,
     var categories: List<Food.Category>,
-    var serviceDays: List<ServiceDay>
+    var serviceDays: List<ServiceDay>,
+    var foods: List<Food>
 ) {
 
     sealed class ServiceDay(val day: Int, val start: Int, val end: Int) {

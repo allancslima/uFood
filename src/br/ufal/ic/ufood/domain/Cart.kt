@@ -38,6 +38,10 @@ class Cart {
         }
     }
 
+    fun getFoodsIterable(): Iterable<Map.Entry<Food, Int>> {
+        return foods.asIterable()
+    }
+
     fun getTotalPrice(): Double {
         return foods.asIterable().sumByDouble { it.key.price * it.value }
     }

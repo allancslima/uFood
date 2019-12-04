@@ -4,7 +4,7 @@ import br.ufal.ic.ufood.domain.coupon.Coupon
 
 class Cart(private val restaurant: Restaurant) {
 
-    private val foods: MutableMap<Food, Int> by lazy {
+    private val items: MutableMap<Food, Int> by lazy {
         HashMap<Food, Int>()
     }
     var discount: Double = 0.0
@@ -15,9 +15,9 @@ class Cart(private val restaurant: Restaurant) {
         if (quantity < 1) {
             throw IllegalArgumentException("Invalid quantity.")
         }
-        val currentQuantity = foods[food]
+        val currentQuantity = items[food]
 
-        foods[food] = if (currentQuantity == null) {
+        items[food] = if (currentQuantity == null) {
             quantity
         } else {
             currentQuantity + quantity
@@ -29,15 +29,15 @@ class Cart(private val restaurant: Restaurant) {
         if (quantity < 1) {
             throw IllegalArgumentException("Invalid quantity.")
         }
-        val currentQuantity = foods[food]
+        val currentQuantity = items[food]
 
         if (currentQuantity != null) {
             val newQuantity = currentQuantity - quantity
 
             if (newQuantity < 1) {
-                foods.remove(food)
+                items.remove(food)
             } else {
-                foods[food] = newQuantity
+                items[food] = newQuantity
             }
         } else {
             throw IllegalStateException("Food does not exist in the cart.")
@@ -45,7 +45,7 @@ class Cart(private val restaurant: Restaurant) {
     }
 
     fun clear() {
-        foods.clear()
+        items.clear()
     }
 
     fun applyCoupon(coupon: Coupon): Boolean {
@@ -58,7 +58,7 @@ class Cart(private val restaurant: Restaurant) {
     }
 
     fun getFoodsIterable(): Iterable<Map.Entry<Food, Int>> {
-        return foods.asIterable()
+        return items.asIterable()
     }
 
     fun getPrice(): Double {
@@ -66,7 +66,7 @@ class Cart(private val restaurant: Restaurant) {
     }
 
     private fun getTotalPrice(): Double {
-        return foods.asIterable().sumByDouble { it.key.price * it.value }
+        return items.asIterable().sumByDouble { it.key.price * it.value }
     }
 
 }

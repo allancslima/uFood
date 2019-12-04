@@ -1,7 +1,7 @@
 package br.ufal.ic.ufood.presentation.restaurant.details
 
-const val LABEL_FOODS = "Foods\n"
-const val LABEL_FOOD_DETAILS = "ID: %d\nName: %s\nDescription: %s\nCategory: %s\nPrice: R$ %.2lf\n"
+const val LABEL_FOODS = "Foods, AAA\n"
+const val LABEL_FOOD_DETAILS = "ID: %d\nName: %s\nDescription: %s\nCategory: %s\nPrice: R$ %.2f\n"
 const val LABEL_CART = "Cart\n"
 const val LABEL_CART_ITEM = "Food: %s - Quantity: %d"
 const val LABEL_CART_PRICE = "Total: %.2lf\nDiscount: %.2lf"

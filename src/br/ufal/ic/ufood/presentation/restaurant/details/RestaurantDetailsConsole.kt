@@ -4,6 +4,7 @@ import br.ufal.ic.ufood.data.order.OrderRepositoryImpl
 import br.ufal.ic.ufood.data.user.UserRepositoryImpl
 import br.ufal.ic.ufood.domain.Food
 import br.ufal.ic.ufood.domain.Restaurant
+import br.ufal.ic.ufood.presentation.profile.address.LABEL_TYPE_ADDRESS_ID
 import br.ufal.ic.ufood.presentation.shared.LABEL_TYPE_OPTION
 import br.ufal.ic.ufood.presentation.shared.MSG_INVALID_OPTION
 import br.ufal.ic.ufood.presentation.shared.mvp.BasicConsole
@@ -77,6 +78,11 @@ class RestaurantDetailsConsole(private val restaurant: Restaurant) : BasicConsol
         println(String.format(MSG_COUPON_APPLIED, newCartPrice))
         holdOutput()
         showMenu()
+    }
+
+    override fun requestAddressId(): Int {
+        print(LABEL_TYPE_ADDRESS_ID)
+        return scanner.nextLine().toInt()
     }
 
     override fun onOrderPlaced(cartPrice: Double) {

@@ -49,6 +49,16 @@ class UserRepositoryImpl : UserRepository {
         return addresses[user.credentials.email] ?: emptyList()
     }
 
+    @Throws(IllegalArgumentException::class)
+    override fun getAddress(user: User, addressId: Int): Address {
+        val addresses = addresses[user.credentials.email]
+
+        if (addresses == null || addressId !in 0 until addresses.size) {
+            throw IllegalArgumentException("Invalid address ID.")
+        }
+        return addresses[addressId]
+    }
+
     override fun addAddress(user: User, address: Address) {
         if (addresses[user.credentials.email] == null) {
             addresses[user.credentials.email] = arrayListOf()

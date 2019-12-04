@@ -17,6 +17,8 @@ interface RestaurantDetailsView : BasicView {
 
     fun onCouponApplied(newCartPrice: Double)
 
+    fun requestAddressId(): Int
+
     fun onOrderPlaced(cartPrice: Double)
 
     fun onError(message: String)

@@ -1,5 +1,6 @@
 package br.ufal.ic.ufood.data.order
 
+import br.ufal.ic.ufood.domain.Address
 import br.ufal.ic.ufood.domain.Cart
 import br.ufal.ic.ufood.domain.Order
 import br.ufal.ic.ufood.domain.User
@@ -26,8 +27,8 @@ class OrderRepositoryImpl : OrderRepository {
         return completeOrders[user.credentials.email] ?: emptyList()
     }
 
-    override fun placeOrder(user: User, cart: Cart): Order {
-        val order = Order(Date(), cart.getItems(), cart.getPrice())
+    override fun placeOrder(user: User, cart: Cart, address: Address): Order {
+        val order = Order(Date(), cart.getItems(), cart.getPrice(), address)
 
         if (pendingOrders[user.credentials.email] == null) {
             pendingOrders[user.credentials.email] = arrayListOf()

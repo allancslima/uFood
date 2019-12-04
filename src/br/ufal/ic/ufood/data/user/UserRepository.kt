@@ -15,6 +15,9 @@ interface UserRepository {
 
     fun getAddresses(user: User): List<Address>
 
+    @Throws(IllegalArgumentException::class)
+    fun getAddress(user: User, addressId: Int): Address
+
     fun addAddress(user: User, address: Address)
 
     @Throws(IllegalArgumentException::class)

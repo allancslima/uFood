@@ -68,9 +68,11 @@ class RestaurantDetailsPresenter(
     }
 
     fun onPlaceOrder() {
+        val addressId = view.requestAddressId()
         try {
             val user = UserSession.getUserOrError()
-            val order = orderRepository.placeOrder(user, cart)
+            val address = userRepository.getAddress(user, addressId)
+            val order = orderRepository.placeOrder(user, cart, address)
             view.onOrderPlaced(order.price)
         } catch (e: Exception) {
             view.onError(e.localizedMessage)

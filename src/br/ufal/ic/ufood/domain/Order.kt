@@ -5,5 +5,6 @@ import java.util.*
 data class Order(
     val createdAt: Date,
     val items: List<Pair<Food, Int>>,
-    val price: Double
+    val price: Double,
+    val address: Address
 )

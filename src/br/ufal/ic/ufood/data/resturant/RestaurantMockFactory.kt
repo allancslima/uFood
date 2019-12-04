@@ -6,7 +6,7 @@ import br.ufal.ic.ufood.domain.Restaurant.ServiceDay.*
 
 object RestaurantMockFactory {
 
-    val serviceDays1: List<Restaurant.ServiceDay> by lazy {
+    private val serviceDays1: List<Restaurant.ServiceDay> by lazy {
         arrayListOf(
             Sunday(12, 19),
             Monday(12, 23),
@@ -17,7 +17,7 @@ object RestaurantMockFactory {
             Saturday(12, 19)
         )
     }
-    val serviceDays2: List<Restaurant.ServiceDay> by lazy {
+    private val serviceDays2: List<Restaurant.ServiceDay> by lazy {
         arrayListOf(
             Monday(10, 15),
             Tuesday(10, 15),
@@ -27,7 +27,7 @@ object RestaurantMockFactory {
             Saturday(10, 13)
         )
     }
-    val serviceDays3: List<Restaurant.ServiceDay> by lazy {
+    private val serviceDays3: List<Restaurant.ServiceDay> by lazy {
         arrayListOf(
             Sunday(11, 21),
             Monday(11, 21),
@@ -38,7 +38,7 @@ object RestaurantMockFactory {
             Saturday(11, 21)
         )
     }
-    val serviceDays4: List<Restaurant.ServiceDay> by lazy {
+    private val serviceDays4: List<Restaurant.ServiceDay> by lazy {
         arrayListOf(
             Sunday(15, 23),
             Monday(15, 23),
@@ -59,21 +59,21 @@ object RestaurantMockFactory {
             ),
             Restaurant(
                 "Galeto São Luíz",
-                "...",
+                "Comida brasileira.",
                 arrayListOf(BEEF, BRAZILIAN, DRINK),
                 serviceDays2
-            ),
-            Restaurant(
-                "Super Pizza",
-                "...",
-                arrayListOf(ACAI, BEEF, ICE_CREAM, PIZZA, SNACK),
-                serviceDays3
             ),
             Restaurant(
                 "Chiquinho Sorvetes",
                 "Sabor de bons momentos",
                 arrayListOf(ACAI, ICE_CREAM),
                 serviceDays3
+            ),
+            Restaurant(
+                "Super Pizza",
+                "Bateu aquela fome? Delivery de pizza.",
+                arrayListOf(ACAI, BEEF, ICE_CREAM, PIZZA, SNACK),
+                serviceDays4
             ),
             Restaurant(
                 "Mercato Restaurante e Pizzaria",

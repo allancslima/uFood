@@ -10,4 +10,18 @@ class RestaurantRepositoryImpl : RestaurantRepository {
         return RestaurantMockFactory.nearestRestaurants
     }
 
+    override fun searchNearestRestaurants(search: String): List<Restaurant> {
+        return RestaurantMockFactory.nearestRestaurants.filter {
+            it.name.toLowerCase().contains(search.toLowerCase())
+        }
+    }
+
+    @Throws(IllegalArgumentException::class)
+    override fun getRestaurant(id: Int): Restaurant {
+        if (id !in 0 until RestaurantMockFactory.nearestRestaurants.size) {
+            throw IllegalArgumentException("Invalid restaurant ID.")
+        }
+        return RestaurantMockFactory.nearestRestaurants[id]
+    }
+
 }

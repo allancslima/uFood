@@ -1,5 +1,6 @@
 package br.ufal.ic.ufood.presentation.home
 
+import br.ufal.ic.ufood.presentation.order.OrdersConsole
 import br.ufal.ic.ufood.presentation.profile.ProfileConsole
 import br.ufal.ic.ufood.presentation.restaurant.RestaurantsConsole
 import br.ufal.ic.ufood.presentation.shared.mvp.BasicConsole
@@ -21,6 +22,7 @@ class HomeConsole : BasicConsole() {
 
         when (scanner.nextLine().toInt()) {
             1 -> RestaurantsConsole().start()
+            2 -> OrdersConsole().start()
             3 -> ProfileConsole().start()
             0 -> {
                 holdOutput()

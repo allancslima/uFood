@@ -1,5 +1,6 @@
 package br.ufal.ic.ufood.presentation.restaurant.details
 
+import br.ufal.ic.ufood.data.order.OrderRepository
 import br.ufal.ic.ufood.data.user.UserRepository
 import br.ufal.ic.ufood.domain.Cart
 import br.ufal.ic.ufood.domain.Food
@@ -9,7 +10,8 @@ import br.ufal.ic.ufood.presentation.shared.mvp.Presenter
 
 class RestaurantDetailsPresenter(
     private val restaurant: Restaurant,
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val orderRepository: OrderRepository
 ) : Presenter<RestaurantDetailsView>(RestaurantDetailsView::class.java) {
 
     private val cart: Cart by lazy { Cart(restaurant) }
@@ -41,7 +43,7 @@ class RestaurantDetailsPresenter(
     }
 
     fun onViewCart() {
-        view.showCart(cart.getFoodsIterable(), cart.getPrice(), cart.discount)
+        view.showCart(cart.getItems(), cart.getPrice(), cart.discount)
     }
 
     fun onClearCart() {
@@ -66,7 +68,13 @@ class RestaurantDetailsPresenter(
     }
 
     fun onPlaceOrder() {
-
+        try {
+            val user = UserSession.getUserOrError()
+            val order = orderRepository.placeOrder(user, cart)
+            view.onOrderPlaced(order.price)
+        } catch (e: Exception) {
+            view.onError(e.localizedMessage)
+        }
     }
 
     @Throws(IllegalArgumentException::class)

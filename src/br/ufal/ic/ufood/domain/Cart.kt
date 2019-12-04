@@ -57,8 +57,8 @@ class Cart(private val restaurant: Restaurant) {
         }
     }
 
-    fun getFoodsIterable(): Iterable<Map.Entry<Food, Int>> {
-        return items.asIterable()
+    fun getItems(): List<Pair<Food, Int>> {
+        return items.map { Pair(it.key, it.value) }
     }
 
     fun getPrice(): Double {

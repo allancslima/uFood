@@ -11,7 +11,7 @@ interface RestaurantDetailsView : BasicView {
 
     fun onCartUpdated()
 
-    fun showCart(iterable: Iterable<Map.Entry<Food, Int>>, cartPrice: Double, discount: Double)
+    fun showCart(items: List<Pair<Food, Int>>, cartPrice: Double, discount: Double)
 
     fun requestCouponId(): Int
 

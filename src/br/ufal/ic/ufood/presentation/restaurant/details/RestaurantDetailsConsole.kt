@@ -1,5 +1,6 @@
 package br.ufal.ic.ufood.presentation.restaurant.details
 
+import br.ufal.ic.ufood.data.order.OrderRepositoryImpl
 import br.ufal.ic.ufood.data.user.UserRepositoryImpl
 import br.ufal.ic.ufood.domain.Food
 import br.ufal.ic.ufood.domain.Restaurant
@@ -10,7 +11,7 @@ import br.ufal.ic.ufood.presentation.shared.mvp.BasicConsole
 class RestaurantDetailsConsole(private val restaurant: Restaurant) : BasicConsole(), RestaurantDetailsView {
 
     private val presenter: RestaurantDetailsPresenter by lazy {
-        RestaurantDetailsPresenter(restaurant, UserRepositoryImpl())
+        RestaurantDetailsPresenter(restaurant, UserRepositoryImpl(), OrderRepositoryImpl())
     }
 
     override fun start() {
@@ -57,10 +58,10 @@ class RestaurantDetailsConsole(private val restaurant: Restaurant) : BasicConsol
         showMenu()
     }
 
-    override fun showCart(iterable: Iterable<Map.Entry<Food, Int>>, cartPrice: Double, discount: Double) {
+    override fun showCart(items: List<Pair<Food, Int>>, cartPrice: Double, discount: Double) {
         println(LABEL_CART)
-        iterable.forEach {
-            println(String.format(LABEL_CART_ITEM, it.key.name, it.key.price, it.value))
+        items.forEach {
+            println(String.format(LABEL_CART_ITEM, it.first.name, it.first.price, it.second))
         }
         println(String.format(LABEL_CART_PRICE, cartPrice, discount))
         holdOutput()

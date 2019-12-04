@@ -1,6 +1,6 @@
 package br.ufal.ic.ufood.presentation.restaurant
 
-import br.ufal.ic.ufood.data.resturant.RestaurantRepository
+import br.ufal.ic.ufood.data.restaurant.RestaurantRepository
 import br.ufal.ic.ufood.presentation.shared.mvp.Presenter
 import java.lang.Exception
 

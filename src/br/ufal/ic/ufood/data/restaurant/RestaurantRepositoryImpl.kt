@@ -1,8 +1,6 @@
-package br.ufal.ic.ufood.data.resturant
+package br.ufal.ic.ufood.data.restaurant
 
 import br.ufal.ic.ufood.domain.Restaurant
-import br.ufal.ic.ufood.domain.Restaurant.Category.*
-import br.ufal.ic.ufood.domain.Restaurant.ServiceDay.*
 
 class RestaurantRepositoryImpl : RestaurantRepository {
 

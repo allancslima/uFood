@@ -1,6 +1,6 @@
 package br.ufal.ic.ufood.presentation.restaurant
 
-import br.ufal.ic.ufood.data.resturant.RestaurantRepositoryImpl
+import br.ufal.ic.ufood.data.restaurant.RestaurantRepositoryImpl
 import br.ufal.ic.ufood.domain.Restaurant
 import br.ufal.ic.ufood.presentation.shared.LABEL_TYPE_OPTION
 import br.ufal.ic.ufood.presentation.shared.MSG_INVALID_OPTION

@@ -14,7 +14,7 @@ Each system functionality is described by a functional requirement at the follow
 * **Description**: Text describing the behavior of feature.
 
 | ID | Title | Description
-|:--|:--|:--|:--|
+|:--|:--|:--|
 | FR001 | User sign in | An user must be able to authenticate by typing the following fields: `email` and `password` |
 | FR002 | User sign up | An user must be able to create an account by typing the following fields: `email`, `password`, `email` and `phone number`. |
 | FR003 | Addresses view | The user must be able to view their registered addresses. |

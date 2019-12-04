@@ -1,11 +1,12 @@
 package br.ufal.ic.ufood.domain.coupon
 
+import br.ufal.ic.ufood.domain.Food
+import br.ufal.ic.ufood.domain.Food.Category.*
 import br.ufal.ic.ufood.domain.Restaurant
-import br.ufal.ic.ufood.domain.Restaurant.Category.*
 
 class DinnerCoupon : Coupon(8) {
 
-    private val allowedCategories: List<Restaurant.Category> by lazy {
+    private val allowedCategories: List<Food.Category> by lazy {
         arrayListOf(BEEF, CHINESE, DRINK, HOT_DOG, JAPANESE, PIZZA, SNACK, ICE_CREAM)
     }
 

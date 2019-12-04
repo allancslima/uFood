@@ -3,13 +3,9 @@ package br.ufal.ic.ufood.domain
 data class Restaurant(
     var name: String,
     var description: String,
-    var categories: List<Category>,
+    var categories: List<Food.Category>,
     var serviceDays: List<ServiceDay>
 ) {
-
-    enum class Category {
-        ACAI, BEEF, BRAZILIAN, CAKE, CHINESE, COOKIE, DRINK, HOT_DOG, ICE_CREAM, ITALIAN, JAPANESE, PIZZA, SNACK
-    }
 
     sealed class ServiceDay(val day: Int, val start: Int, val end: Int) {
 

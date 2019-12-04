@@ -3,7 +3,7 @@ package br.ufal.ic.ufood.domain.coupon
 import br.ufal.ic.ufood.domain.Restaurant
 import java.util.*
 
-abstract class Coupon(val discount: Double, private val minPrice: Double) {
+abstract class Coupon(val discount: Double, val minPrice: Double) {
 
     fun isValid(restaurant: Restaurant, cartPrice: Double): Boolean {
         return cartPrice >= minPrice && isValid(restaurant)

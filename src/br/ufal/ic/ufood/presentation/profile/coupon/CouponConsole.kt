@@ -34,7 +34,7 @@ class CouponConsole : BasicConsole(), CouponView {
                 is DinnerCoupon -> LABEL_DINNER
                 else -> LABEL_OTHER
             }
-            println("${String.format(LABEL_COUPON_DETAILS, index, couponType, coupon.discount)}\n")
+            println("${String.format(LABEL_COUPON_DETAILS, index, couponType, coupon.discount, coupon.minPrice)}\n")
         }
         holdOutput()
         showMenu()

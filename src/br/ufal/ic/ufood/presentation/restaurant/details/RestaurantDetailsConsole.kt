@@ -60,7 +60,7 @@ class RestaurantDetailsConsole(private val restaurant: Restaurant) : BasicConsol
     override fun showCart(iterable: Iterable<Map.Entry<Food, Int>>, cartPrice: Double, discount: Double) {
         println(LABEL_CART)
         iterable.forEach {
-            println(String.format(LABEL_CART_ITEM, it.key.name, it.value))
+            println(String.format(LABEL_CART_ITEM, it.key.name, it.key.price, it.value))
         }
         println(String.format(LABEL_CART_PRICE, cartPrice, discount))
         holdOutput()

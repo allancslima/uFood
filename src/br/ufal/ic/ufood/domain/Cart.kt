@@ -39,6 +39,8 @@ class Cart(private val restaurant: Restaurant) {
             } else {
                 foods[food] = newQuantity
             }
+        } else {
+            throw IllegalStateException("Food does not exist in the cart.")
         }
     }
 

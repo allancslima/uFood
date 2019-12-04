@@ -2,7 +2,6 @@ package br.ufal.ic.ufood.presentation.profile.address
 
 import br.ufal.ic.ufood.data.user.UserRepositoryImpl
 import br.ufal.ic.ufood.domain.Address
-import br.ufal.ic.ufood.domain.Location
 import br.ufal.ic.ufood.presentation.shared.LABEL_TYPE_OPTION
 import br.ufal.ic.ufood.presentation.shared.mvp.BasicConsole
 
@@ -48,14 +47,13 @@ class AddressConsole : BasicConsole(), AddressView {
     override fun showAddresses(addresses: List<Address>) {
         addresses.forEachIndexed { index, address ->
             println(
-                "${String.format(
+                String.format(
                     LABEL_ADDRESS_DETAILS,
                     index,
                     address.street,
                     address.number,
-                    address.complement,
-                    address.location.lat, address.location.lat
-                )}\n"
+                    address.complement
+                )
             )
         }
         holdOutput()
@@ -69,16 +67,11 @@ class AddressConsole : BasicConsole(), AddressView {
         val number = scanner.nextLine().toInt()
         print(LABEL_TYPE_COMPLEMENT)
         val complement = scanner.nextLine()
-        print(LABEL_TYPE_LAT)
-        val lat = scanner.nextLine().toFloat()
-        print(LABEL_TYPE_LNG)
-        val lng = scanner.nextLine().toFloat()
 
         return Address(
             street,
             number,
-            complement,
-            Location(lat, lng)
+            complement
         )
     }
 

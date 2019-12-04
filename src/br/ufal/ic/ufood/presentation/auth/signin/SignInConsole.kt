@@ -71,10 +71,11 @@ class SignInConsole(private val result: (signed: Boolean) -> Unit) : BasicConsol
     override fun onSignInSuccess(user: User) {
         println(String.format(MSG_WELCOME_USER, user.name))
         holdOutput()
+        result(true)
     }
 
     override fun onSignInError(message: String) {
-        println(message)
+        println("\n$message")
         holdOutput()
         showMenu()
     }

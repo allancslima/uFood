@@ -51,7 +51,7 @@ class OrdersConsole : BasicConsole(), OrdersView {
     override fun showOrders(orders: List<Order>) {
         println(LABEL_ORDERS)
         orders.forEachIndexed { index, order ->
-            println(String.format(LABEL_ORDER_DETAILS, index, order.createdAt.formatToString("dd/MM/yyyy, hh:mm")))
+            println(String.format(LABEL_ORDER_DETAILS, index, order.createdAt.formatToString("HH:mm, dd/MM/yyyy")))
             order.items.forEach {
                 println(String.format(LABEL_ORDER_ITEM, it.first.name, it.second))
             }

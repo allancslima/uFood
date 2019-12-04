@@ -61,7 +61,7 @@ class SignUpConsole(private val result: (signed: Boolean) -> Unit) : BasicConsol
     }
 
     override fun onSignUpError(message: String) {
-        println(message)
+        println("\n$message")
         holdOutput()
         showMenu()
     }

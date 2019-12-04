@@ -11,7 +11,7 @@ class Application {
         fun main(args: Array<String>) {
             SignInConsole { signed ->
                 if (signed) {
-                    HomeConsole().start()
+                    HomeConsole { logout -> if (logout) main(args) }.start()
                 }
             }.start()
         }

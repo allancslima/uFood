@@ -31,7 +31,7 @@ class UserRepositoryImpl : UserRepository {
     override fun signIn(credentials: Credentials): User {
         val user = users[credentials.email]
 
-        if (user == null || user.credentials == credentials) {
+        if (user == null || user.credentials != credentials) {
             throw IllegalArgumentException("Invalid email and/or password.")
         }
         return user

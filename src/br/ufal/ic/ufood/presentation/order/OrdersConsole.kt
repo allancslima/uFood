@@ -13,6 +13,30 @@ class OrdersConsole : BasicConsole(), OrdersView {
         OrdersPresenter(OrderRepositoryImpl())
     }
 
+    override fun showMenu() {
+        println("ORDERS\n")
+        println("1 - Show pending orders")
+        println("2 - Show complete orders")
+        println("3 - Confirm an order delivery")
+        println("0 - Back")
+        print(LABEL_TYPE_OPTION)
+
+        when (scanner.nextLine().toInt()) {
+            1 -> presenter.onLoadPendingOrders()
+            2 -> presenter.onLoadCompleteOrders()
+            3 -> presenter.onConfirmOrderDelivery()
+            0 -> {
+                holdOutput()
+                stop()
+            }
+            else -> {
+                println(MSG_INVALID_OPTION)
+                holdOutput()
+                showMenu()
+            }
+        }
+    }
+
     override fun start() {
         super.start()
         presenter.attachView(this)
@@ -46,36 +70,6 @@ class OrdersConsole : BasicConsole(), OrdersView {
         println(MSG_ORDER_DELIVERED)
         holdOutput()
         showMenu()
-    }
-
-    override fun onError(message: String) {
-        println("An error occurred: $message")
-        holdOutput()
-        showMenu()
-    }
-
-    private fun showMenu() {
-        println("ORDERS\n")
-        println("1 - Show pending orders")
-        println("2 - Show complete orders")
-        println("3 - Confirm an order delivery")
-        println("0 - Back")
-        print(LABEL_TYPE_OPTION)
-
-        when (scanner.nextLine().toInt()) {
-            1 -> presenter.onLoadPendingOrders()
-            2 -> presenter.onLoadCompleteOrders()
-            3 -> presenter.onConfirmOrderDelivery()
-            0 -> {
-                holdOutput()
-                stop()
-            }
-            else -> {
-                println(MSG_INVALID_OPTION)
-                holdOutput()
-                showMenu()
-            }
-        }
     }
 
 }

@@ -15,6 +15,28 @@ class CouponConsole : BasicConsole(), CouponView {
         CouponPresenter(UserRepositoryImpl())
     }
 
+    override fun showMenu() {
+        println("COUPONS\n")
+        println("1 - My coupons")
+        println("2 - Apply coupon code")
+        println("0 - Back")
+        print(LABEL_TYPE_OPTION)
+
+        when (scanner.nextLine().toInt()) {
+            1 -> presenter.onLoadMyCoupons()
+            2 -> presenter.onApplyCouponCode()
+            0 -> {
+                holdOutput()
+                stop()
+            }
+            else -> {
+                println(MSG_INVALID_OPTION)
+                holdOutput()
+                showMenu()
+            }
+        }
+    }
+
     override fun start() {
         super.start()
         presenter.attachView(this)
@@ -49,34 +71,6 @@ class CouponConsole : BasicConsole(), CouponView {
         println("\n$MSG_COUPON_ADDED")
         holdOutput()
         showMenu()
-    }
-
-    override fun onError(message: String) {
-        println("\nAn error occurred: $message")
-        holdOutput()
-        showMenu()
-    }
-
-    private fun showMenu() {
-        println("COUPONS\n")
-        println("1 - My coupons")
-        println("2 - Apply coupon code")
-        println("0 - Back")
-        print(LABEL_TYPE_OPTION)
-
-        when (scanner.nextLine().toInt()) {
-            1 -> presenter.onLoadMyCoupons()
-            2 -> presenter.onApplyCouponCode()
-            0 -> {
-                holdOutput()
-                stop()
-            }
-            else -> {
-                println(MSG_INVALID_OPTION)
-                holdOutput()
-                showMenu()
-            }
-        }
     }
 
 }

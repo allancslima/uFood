@@ -13,6 +13,4 @@ interface RestaurantsView : BasicView {
 
     fun navigateToRestaurant(restaurant: Restaurant)
 
-    fun onError(message: String)
-
 }

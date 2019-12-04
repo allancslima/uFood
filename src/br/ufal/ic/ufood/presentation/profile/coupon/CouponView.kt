@@ -11,6 +11,4 @@ interface CouponView : BasicView {
 
     fun onValidCouponCode()
 
-    fun onError(message: String)
-
 }

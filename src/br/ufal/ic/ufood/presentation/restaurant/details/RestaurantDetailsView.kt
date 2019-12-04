@@ -21,6 +21,4 @@ interface RestaurantDetailsView : BasicView {
 
     fun onOrderPlaced(cartPrice: Double)
 
-    fun onError(message: String)
-
 }

@@ -13,6 +13,30 @@ class RestaurantsConsole : BasicConsole(), RestaurantsView {
         RestaurantsPresenter(RestaurantRepositoryImpl())
     }
 
+    override fun showMenu() {
+        println("RESTAURANTS\n")
+        println("1 - Show nearest restaurants")
+        println("2 - Search nearest restaurants")
+        println("3 - Go to a restaurant")
+        println("0 - Back")
+        print(LABEL_TYPE_OPTION)
+
+        when (scanner.nextLine().toInt()) {
+            1 -> presenter.onLoadNearestRestaurants()
+            2 -> presenter.onSearchNearestRestaurants()
+            3 -> presenter.onGoToRestaurant()
+            0 -> {
+                holdOutput()
+                stop()
+            }
+            else -> {
+                println(MSG_INVALID_OPTION)
+                holdOutput()
+                showMenu()
+            }
+        }
+    }
+
     override fun start() {
         super.start()
         presenter.attachView(this)
@@ -58,36 +82,6 @@ class RestaurantsConsole : BasicConsole(), RestaurantsView {
         RestaurantDetailsConsole(restaurant).start()
         holdOutput()
         showMenu()
-    }
-
-    override fun onError(message: String) {
-        println("An error occurred: $message")
-        holdOutput()
-        showMenu()
-    }
-
-    private fun showMenu() {
-        println("RESTAURANTS\n")
-        println("1 - Show nearest restaurants")
-        println("2 - Search nearest restaurants")
-        println("3 - Go to a restaurant")
-        println("0 - Back")
-        print(LABEL_TYPE_OPTION)
-
-        when (scanner.nextLine().toInt()) {
-            1 -> presenter.onLoadNearestRestaurants()
-            2 -> presenter.onSearchNearestRestaurants()
-            3 -> presenter.onGoToRestaurant()
-            0 -> {
-                holdOutput()
-                stop()
-            }
-            else -> {
-                println(MSG_INVALID_OPTION)
-                holdOutput()
-                showMenu()
-            }
-        }
     }
 
 }

@@ -15,6 +15,28 @@ class SignInConsole(private val result: (signed: Boolean) -> Unit) : BasicConsol
 
     private val presenter: SignInPresenter by lazy { SignInPresenter(UserRepositoryImpl()) }
 
+    override fun showMenu() {
+        println("SIGN IN\n")
+        println("1 - Enter credentials")
+        println("2 - Go to sign up")
+        println("0 - Exit")
+        print(LABEL_TYPE_OPTION)
+
+        when (scanner.nextLine().toInt()) {
+            1 -> presenter.onEnterCredentials()
+            2 -> presenter.onGoToSignUp()
+            0 -> {
+                holdOutput()
+                stop()
+            }
+            else -> {
+                println(MSG_INVALID_OPTION)
+                holdOutput()
+                showMenu()
+            }
+        }
+    }
+
     override fun start() {
         super.start()
         presenter.attachView(this)
@@ -55,28 +77,6 @@ class SignInConsole(private val result: (signed: Boolean) -> Unit) : BasicConsol
         println(message)
         holdOutput()
         showMenu()
-    }
-
-    private fun showMenu() {
-        println("SIGN IN\n")
-        println("1 - Enter credentials")
-        println("2 - Go to sign up")
-        println("0 - Exit")
-        print(LABEL_TYPE_OPTION)
-
-        when (scanner.nextLine().toInt()) {
-            1 -> presenter.onEnterCredentials()
-            2 -> presenter.onGoToSignUp()
-            0 -> {
-                holdOutput()
-                stop()
-            }
-            else -> {
-                println(MSG_INVALID_OPTION)
-                holdOutput()
-                showMenu()
-            }
-        }
     }
 
 }

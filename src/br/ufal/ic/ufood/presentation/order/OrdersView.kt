@@ -11,6 +11,4 @@ interface OrdersView : BasicView {
 
     fun onOrderDeliveredConfirmation()
 
-    fun onError(message: String)
-
 }

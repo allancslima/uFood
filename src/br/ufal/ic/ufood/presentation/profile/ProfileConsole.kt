@@ -7,12 +7,7 @@ import br.ufal.ic.ufood.presentation.shared.mvp.BasicConsole
 
 class ProfileConsole : BasicConsole() {
 
-    override fun start() {
-        super.start()
-        showMenu()
-    }
-
-    private fun showMenu() {
+    override fun showMenu() {
         println("PROFILE\n")
         println("1 - Addresses")
         println("2 - Coupons")
@@ -29,6 +24,11 @@ class ProfileConsole : BasicConsole() {
                 showMenu()
             }
         }
+    }
+
+    override fun start() {
+        super.start()
+        showMenu()
     }
 
 }

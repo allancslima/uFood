@@ -10,6 +10,30 @@ class AddressConsole : BasicConsole(), AddressView {
 
     private val presenter: AddressPresenter by lazy { AddressPresenter(UserRepositoryImpl()) }
 
+    override fun showMenu() {
+        println("ADDRESS\n")
+        println("1 - My addresses")
+        println("2 - Add address")
+        println("3 - Delete address")
+        println("0 - Back")
+        print(LABEL_TYPE_OPTION)
+
+        when (scanner.nextLine().toInt()) {
+            1 -> presenter.onLoadMyAddresses()
+            2 -> presenter.onAddAddress()
+            3 -> presenter.onDeleteAddress()
+            0 -> {
+                holdOutput()
+                stop()
+            }
+            else -> {
+                println("Invalid option.")
+                holdOutput()
+                showMenu()
+            }
+        }
+    }
+
     override fun start() {
         super.start()
         presenter.attachView(this)
@@ -73,36 +97,6 @@ class AddressConsole : BasicConsole(), AddressView {
         println("\n$MSG_ADDRESS_DELETED")
         holdOutput()
         showMenu()
-    }
-
-    override fun onError(message: String) {
-        println("\nAn error occurred: $message")
-        holdOutput()
-        showMenu()
-    }
-
-    private fun showMenu() {
-        println("ADDRESS\n")
-        println("1 - My addresses")
-        println("2 - Add address")
-        println("3 - Delete address")
-        println("0 - Back")
-        print(LABEL_TYPE_OPTION)
-
-        when (scanner.nextLine().toInt()) {
-            1 -> presenter.onLoadMyAddresses()
-            2 -> presenter.onAddAddress()
-            3 -> presenter.onDeleteAddress()
-            0 -> {
-                holdOutput()
-                stop()
-            }
-            else -> {
-                println("Invalid option.")
-                holdOutput()
-                showMenu()
-            }
-        }
     }
 
 }

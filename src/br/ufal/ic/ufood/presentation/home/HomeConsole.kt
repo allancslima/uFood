@@ -7,12 +7,7 @@ import br.ufal.ic.ufood.presentation.shared.mvp.BasicConsole
 
 class HomeConsole : BasicConsole() {
 
-    override fun start() {
-        super.start()
-        showMenu()
-    }
-
-    private fun showMenu() {
+    override fun showMenu() {
         println("HOME\n")
         println("1 - Go to restaurants")
         println("2 - Go to orders")
@@ -30,6 +25,11 @@ class HomeConsole : BasicConsole() {
             }
             else -> println("Invalid option.")
         }
+        showMenu()
+    }
+
+    override fun start() {
+        super.start()
         showMenu()
     }
 

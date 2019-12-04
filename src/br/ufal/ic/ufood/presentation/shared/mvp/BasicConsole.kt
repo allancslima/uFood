@@ -2,7 +2,7 @@ package br.ufal.ic.ufood.presentation.shared.mvp
 
 import java.util.*
 
-open class BasicConsole : BasicView {
+abstract class BasicConsole : BasicView {
 
     companion object {
 
@@ -11,13 +11,17 @@ open class BasicConsole : BasicView {
 
     }
 
-    override fun showMessage(message: String) {
-        print(message)
-    }
+    protected abstract fun showMenu()
 
     open fun start() { }
 
     open fun stop() { }
+
+    override fun onError(message: String) {
+        println("\nAn error occurred: $message")
+        holdOutput()
+        showMenu()
+    }
 
     fun holdOutput() {
         println("\nPress enter to continue...")

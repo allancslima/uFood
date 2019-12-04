@@ -15,6 +15,38 @@ class RestaurantDetailsConsole(private val restaurant: Restaurant) : BasicConsol
         RestaurantDetailsPresenter(restaurant, UserRepositoryImpl(), OrderRepositoryImpl())
     }
 
+    override fun showMenu() {
+        println("Restaurant - ${restaurant.name}\n")
+        println("1 - Show foods")
+        println("2 - Add food to cart")
+        println("3 - Remove food from cart")
+        println("4 - View cart")
+        println("5 - Clear cart")
+        println("6 - Apply coupon")
+        println("7 - Place order")
+        println("0 - Back")
+        print(LABEL_TYPE_OPTION)
+
+        when (scanner.nextLine().toInt()) {
+            1 -> presenter.onShowFoods()
+            2 -> presenter.onAddFoodToCart()
+            3 -> presenter.onRemoveFoodFromCart()
+            4 -> presenter.onViewCart()
+            5 -> presenter.onClearCart()
+            6 -> presenter.onApplyCoupon()
+            7 -> presenter.onPlaceOrder()
+            0 -> {
+                holdOutput()
+                stop()
+            }
+            else -> {
+                println(MSG_INVALID_OPTION)
+                holdOutput()
+                showMenu()
+            }
+        }
+    }
+
     override fun start() {
         super.start()
         presenter.attachView(this)
@@ -89,44 +121,6 @@ class RestaurantDetailsConsole(private val restaurant: Restaurant) : BasicConsol
         println(MSG_ORDER_PLACED)
         holdOutput()
         showMenu()
-    }
-
-    override fun onError(message: String) {
-        println("An error occurred: $message")
-        holdOutput()
-        showMenu()
-    }
-
-    private fun showMenu() {
-        println("Restaurant - ${restaurant.name}\n")
-        println("1 - Show foods")
-        println("2 - Add food to cart")
-        println("3 - Remove food from cart")
-        println("4 - View cart")
-        println("5 - Clear cart")
-        println("6 - Apply coupon")
-        println("7 - Place order")
-        println("0 - Back")
-        print(LABEL_TYPE_OPTION)
-
-        when (scanner.nextLine().toInt()) {
-            1 -> presenter.onShowFoods()
-            2 -> presenter.onAddFoodToCart()
-            3 -> presenter.onRemoveFoodFromCart()
-            4 -> presenter.onViewCart()
-            5 -> presenter.onClearCart()
-            6 -> presenter.onApplyCoupon()
-            7 -> presenter.onPlaceOrder()
-            0 -> {
-                holdOutput()
-                stop()
-            }
-            else -> {
-                println(MSG_INVALID_OPTION)
-                holdOutput()
-                showMenu()
-            }
-        }
     }
 
 }

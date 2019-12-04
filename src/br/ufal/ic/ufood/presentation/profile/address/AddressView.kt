@@ -15,6 +15,4 @@ interface AddressView : BasicView {
 
     fun onAddressDeleted()
 
-    fun onError(message: String)
-
 }

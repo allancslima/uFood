@@ -57,11 +57,12 @@ class RestaurantDetailsConsole(private val restaurant: Restaurant) : BasicConsol
         showMenu()
     }
 
-    override fun showCart(iterable: Iterable<Map.Entry<Food, Int>>, totalPrice: Double) {
+    override fun showCart(iterable: Iterable<Map.Entry<Food, Int>>, cartPrice: Double, discount: Double) {
         println(LABEL_CART)
         iterable.forEach {
             println(String.format(LABEL_CART_ITEM, it.key.name, it.value))
         }
+        println(String.format(LABEL_CART_PRICE, cartPrice, discount))
         holdOutput()
         showMenu()
     }
@@ -71,14 +72,20 @@ class RestaurantDetailsConsole(private val restaurant: Restaurant) : BasicConsol
         return scanner.nextLine().toInt()
     }
 
-    override fun onCouponApplied(newTotalPrice: Double) {
-        println(String.format(MSG_COUPON_APPLIED, newTotalPrice))
+    override fun onCouponApplied(newCartPrice: Double) {
+        println(String.format(MSG_COUPON_APPLIED, newCartPrice))
         holdOutput()
         showMenu()
     }
 
-    override fun onOrderPlaced(totalPrice: Double) {
+    override fun onOrderPlaced(cartPrice: Double) {
         println(MSG_ORDER_PLACED)
+        holdOutput()
+        showMenu()
+    }
+
+    override fun onError(message: String) {
+        println("An error occurred: $message")
         holdOutput()
         showMenu()
     }

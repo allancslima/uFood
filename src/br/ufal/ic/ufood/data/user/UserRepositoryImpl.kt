@@ -71,6 +71,25 @@ class UserRepositoryImpl : UserRepository {
     }
 
     @Throws(IllegalArgumentException::class)
+    override fun getCoupon(user: User, couponId: Int): Coupon {
+        val coupons = coupons[user.credentials.email]
+
+        if (coupons == null || couponId !in 0 until coupons.size) {
+            throw IllegalArgumentException("Invalid coupon ID.")
+        }
+        return coupons.toList()[couponId]
+    }
+
+    override fun deleteCoupon(user: User, couponId: Int) {
+        val coupons = coupons[user.credentials.email]
+
+        if (coupons != null && couponId in 0 until coupons.size) {
+            val coupon = coupons.toList()[couponId]
+            coupons.remove(coupon)
+        }
+    }
+
+    @Throws(IllegalArgumentException::class)
     override fun applyCouponCode(user: User, couponCode: String) {
         val coupon = validCouponCodes[couponCode] ?: throw IllegalArgumentException("Invalid coupon.")
 

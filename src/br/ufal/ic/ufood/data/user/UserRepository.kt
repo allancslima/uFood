@@ -23,6 +23,11 @@ interface UserRepository {
     fun getCoupons(user: User): List<Coupon>
 
     @Throws(IllegalArgumentException::class)
+    fun getCoupon(user: User, couponId: Int): Coupon
+
+    fun deleteCoupon(user: User, couponId: Int)
+
+    @Throws(IllegalArgumentException::class)
     fun applyCouponCode(user: User, couponCode: String)
 
 }

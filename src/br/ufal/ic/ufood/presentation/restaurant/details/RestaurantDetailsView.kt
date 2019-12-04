@@ -11,12 +11,14 @@ interface RestaurantDetailsView : BasicView {
 
     fun onCartUpdated()
 
-    fun showCart(iterable: Iterable<Map.Entry<Food, Int>>, totalPrice: Double)
+    fun showCart(iterable: Iterable<Map.Entry<Food, Int>>, cartPrice: Double, discount: Double)
 
     fun requestCouponId(): Int
 
-    fun onCouponApplied(newTotalPrice: Double)
+    fun onCouponApplied(newCartPrice: Double)
 
-    fun onOrderPlaced(totalPrice: Double)
+    fun onOrderPlaced(cartPrice: Double)
+
+    fun onError(message: String)
 
 }

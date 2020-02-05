@@ -11,10 +11,6 @@ abstract class Coupon(val discount: Double, val minPrice: Double) {
 
     protected abstract fun isValid(restaurant: Restaurant): Boolean
 
-    protected fun isValidMinPrice(price: Double): Boolean {
-        return price >= minPrice
-    }
-
     protected fun getTodayService(restaurant: Restaurant): Restaurant.ServiceDay? {
         val calendar = Calendar.getInstance()
         val today = calendar.get(Calendar.DAY_OF_WEEK)

@@ -6,6 +6,7 @@ import br.ufal.ic.ufood.domain.coupon.Coupon
 import br.ufal.ic.ufood.domain.coupon.DinnerCoupon
 import br.ufal.ic.ufood.domain.coupon.LunchCoupon
 import br.ufal.ic.ufood.presentation.shared.LABEL_TYPE_OPTION
+import br.ufal.ic.ufood.presentation.shared.MSG_EMPTY_LIST
 import br.ufal.ic.ufood.presentation.shared.MSG_INVALID_OPTION
 import br.ufal.ic.ufood.presentation.shared.mvp.BasicConsole
 
@@ -49,6 +50,7 @@ class CouponConsole : BasicConsole(), CouponView {
     }
 
     override fun showCoupons(coupons: List<Coupon>) {
+        println(LABEL_COUPONS)
         coupons.forEachIndexed { index, coupon ->
             val couponType = when (coupon) {
                 is BreakfastCoupon -> LABEL_BREAKFAST
@@ -58,6 +60,7 @@ class CouponConsole : BasicConsole(), CouponView {
             }
             println("${String.format(LABEL_COUPON_DETAILS, index, couponType, coupon.discount, coupon.minPrice)}\n")
         }
+        if (coupons.isEmpty()) println(MSG_EMPTY_LIST)
         holdOutput()
         showMenu()
     }

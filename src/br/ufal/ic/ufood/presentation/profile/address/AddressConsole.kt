@@ -3,6 +3,7 @@ package br.ufal.ic.ufood.presentation.profile.address
 import br.ufal.ic.ufood.data.user.UserRepositoryImpl
 import br.ufal.ic.ufood.domain.Address
 import br.ufal.ic.ufood.presentation.shared.LABEL_TYPE_OPTION
+import br.ufal.ic.ufood.presentation.shared.MSG_EMPTY_LIST
 import br.ufal.ic.ufood.presentation.shared.mvp.BasicConsole
 
 class AddressConsole : BasicConsole(), AddressView {
@@ -45,6 +46,7 @@ class AddressConsole : BasicConsole(), AddressView {
     }
 
     override fun showAddresses(addresses: List<Address>) {
+        println(LABEL_ADDRESSES)
         addresses.forEachIndexed { index, address ->
             println(
                 String.format(
@@ -56,6 +58,7 @@ class AddressConsole : BasicConsole(), AddressView {
                 )
             )
         }
+        if (addresses.isEmpty()) println(MSG_EMPTY_LIST)
         holdOutput()
         showMenu()
     }

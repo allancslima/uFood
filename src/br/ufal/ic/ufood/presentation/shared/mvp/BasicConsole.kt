@@ -26,6 +26,7 @@ abstract class BasicConsole : BasicView {
     fun holdOutput() {
         println("\nPress enter to continue...")
         scanner.nextLine()
+        println()
     }
 
 }

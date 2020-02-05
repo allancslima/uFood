@@ -3,6 +3,7 @@ package br.ufal.ic.ufood.presentation.order
 import br.ufal.ic.ufood.data.order.OrderRepositoryImpl
 import br.ufal.ic.ufood.domain.Order
 import br.ufal.ic.ufood.presentation.shared.LABEL_TYPE_OPTION
+import br.ufal.ic.ufood.presentation.shared.MSG_EMPTY_LIST
 import br.ufal.ic.ufood.presentation.shared.MSG_INVALID_OPTION
 import br.ufal.ic.ufood.presentation.shared.extensions.formatToString
 import br.ufal.ic.ufood.presentation.shared.mvp.BasicConsole
@@ -57,6 +58,7 @@ class OrdersConsole : BasicConsole(), OrdersView {
             }
             println(String.format(LABEL_ORDER_PRICE, order.price))
         }
+        if (orders.isEmpty()) println(MSG_EMPTY_LIST)
         holdOutput()
         showMenu()
     }
